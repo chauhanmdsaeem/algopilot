@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 const Navbar = () => {
@@ -7,9 +8,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="text-xl font-bold tracking-wider text-indigo-400">
+            <Link to="/" className="text-xl font-bold tracking-wider text-indigo-400">
               Algo<span className="text-white">Pilot</span>
-            </span>
+            </Link>
           </div>
 
           {/* Navigation Links (Placeholders for now) */}
@@ -21,12 +22,12 @@ const Navbar = () => {
 
           {/* Auth Buttons */}
           <div className="flex items-center space-x-4">
-            <button className="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            <Link to="/login" className="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               Login
-            </button>
-            <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 shadow-sm shadow-indigo-900/50">
+            </Link>
+            <Link to="/signup" className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 shadow-sm shadow-indigo-900/50">
               Sign Up
-            </button>
+            </Link>
           </div>
         </div>
       </div>
