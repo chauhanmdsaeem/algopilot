@@ -1,23 +1,37 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
       setError('Please fill in all fields');
       return;
     }
     setError('');
-    console.log('Login data ready for backend:', formData);
-    // Backend integration will go here on Day 12
+
+    try {
+      // Call the Spring Boot login API
+      const response = await axios.post('http://localhost:8080/api/auth/login', formData);
+      
+      // Save the JWT to the browser's local storage
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+      
+      // Redirect to the dashboard
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Invalid email or password');
+    }
   };
 
   return (

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
@@ -20,8 +22,21 @@ const Signup = () => {
       return;
     }
     setError('');
-    console.log('Signup data ready for backend:', formData);
-    // Backend integration will go here on Day 12
+
+    try {
+      // Send data to Spring Boot API
+      await axios.post('http://localhost:8080/api/auth/signup', {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password
+      });
+      
+      // If successful, send them to the login page
+      navigate('/login');
+    } catch (err) {
+      // Capture error message from backend if email is already used
+      setError(err.response?.data || 'An error occurred during signup');
+    }
   };
 
   return (
