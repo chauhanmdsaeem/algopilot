@@ -34,6 +34,7 @@ public class SecurityConfig {
             
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll() // Login & Signup are public
+                .requestMatchers("/api/problems/**").permitAll() // Allow public access to view problems
                 .anyRequest().authenticated() // EVERY other route requires a valid JWT
             )
             
