@@ -7,7 +7,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
-import ProtectedRoute from './components/ProtectedRoute'; // <-- Import
+import Problems from './pages/Problems'; // <-- 1. Add this import
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/problems" element={<Problems />} /> {/* <-- 2. Add this route */}
             
             {/* Protected Routes */}
             <Route 

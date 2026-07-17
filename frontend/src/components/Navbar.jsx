@@ -1,53 +1,88 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const isLoggedIn = !!localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
   return (
-    <nav className="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="text-xl font-bold tracking-wider text-indigo-400">
-              Algo<span className="text-white">Pilot</span>
+    <nav className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900 text-white">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* Logo */}
+        <div className="flex-shrink-0">
+          <Link
+            to="/"
+            className="text-xl font-bold tracking-wider text-indigo-400"
+          >
+            Algo<span className="text-white">Pilot</span>
+          </Link>
+        </div>
+
+        {/* Navigation Links */}
+        <div className="hidden md:block">
+          <div className="ml-10 flex items-baseline space-x-8">
+            <Link
+              to="/problems"
+              className="rounded-md px-3 py-2 text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
+            >
+              Problems
+            </Link>
+
+            <Link
+              to="/leaderboard"
+              className="rounded-md px-3 py-2 text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
+            >
+              Leaderboard
+            </Link>
+
+            <Link
+              to="/dashboard"
+              className="rounded-md px-3 py-2 text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
+            >
+              Dashboard
             </Link>
           </div>
+        </div>
 
-          {/* Navigation Links (Placeholders for now) */}
-          <div className="hidden md:flex space-x-8">
-            <a href="#" className="text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">Problems</a>
-            <a href="#" className="text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">Leaderboard</a>
-            <a href="#" className="text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">Dashboard</a>
-          </div>
+        {/* Authentication */}
+        <div className="flex items-center space-x-4">
+          {isLoggedIn ? (
+            <>
+              <Link
+                to="/profile"
+                className="rounded-md px-3 py-2 text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
+              >
+                Profile
+              </Link>
 
-          {/* Auth Buttons */}
-          <div className="flex items-center space-x-4">
-            {localStorage.getItem('token') ? (
-              <>
-                <Link to="/profile" className="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-                  Profile
-                </Link>
-                <button 
-                  onClick={() => {
-                    localStorage.removeItem('token');
-                    window.location.href = '/login';
-                  }} 
-                  className="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 shadow-sm shadow-rose-900/50"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-                  Login
-                </Link>
-                <Link to="/signup" className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 shadow-sm shadow-indigo-900/50">
-                  Sign Up
-                </Link>
-              </>
-            )}
-          </div>
+              <button
+                onClick={handleLogout}
+                className="rounded-md bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-rose-900/50 transition-all duration-200 hover:bg-rose-700"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="rounded-md px-3 py-2 text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/signup"
+                className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-indigo-900/50 transition-all duration-200 hover:bg-indigo-700"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

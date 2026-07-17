@@ -77,7 +77,6 @@ const Problems = () => {
                 <tr key={problem.id} className="hover:bg-slate-800/25 transition-colors group">
                   <td className="px-6 py-4 text-slate-600">⚪</td>
                   <td className="px-6 py-4 font-medium text-slate-200 group-hover:text-indigo-400 transition-colors">
-                    {/* We will build this Problem Detail page on Day 18 */}
                     <Link to={`/problems/${problem.id}`}>
                       {problem.id}. {problem.title}
                     </Link>
