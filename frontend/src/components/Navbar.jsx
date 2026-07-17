@@ -22,12 +22,31 @@ const Navbar = () => {
 
           {/* Auth Buttons */}
           <div className="flex items-center space-x-4">
-            <Link to="/login" className="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-              Login
-            </Link>
-            <Link to="/signup" className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 shadow-sm shadow-indigo-900/50">
-              Sign Up
-            </Link>
+            {localStorage.getItem('token') ? (
+              <>
+                <Link to="/profile" className="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                  Profile
+                </Link>
+                <button 
+                  onClick={() => {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                  }} 
+                  className="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 shadow-sm shadow-rose-900/50"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                  Login
+                </Link>
+                <Link to="/signup" className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 shadow-sm shadow-indigo-900/50">
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
