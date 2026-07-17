@@ -105,36 +105,36 @@ Workflow tip: keep an integrated terminal split open for `git status`, `git add`
 
 ## Week 3 — Problems Module
 
-**Day 15 — Problem Entity & CRUD APIs**
+**Day 15 — Problem Entity & CRUD APIs**[done]
 - Create `Problem` entity (title, difficulty, description, constraints, examples, tags)
 - Build CRUD REST endpoints
 - Branch: `feature/problem-page`
 - Commit: `Add Problem entity and CRUD APIs`
 
-**Day 16 — Problems List Page**
+**Day 16 — Problems List Page**[done]
 - Build problems list UI (table/cards) fetching from API
 - Add pagination
 - Commit: `Build problems list page with pagination`
 
-**Day 17 — Search & Filters**
+**Day 17 — Search & Filters**[done]
 - Add search by title, filter by difficulty and tags
 - Commit: `Add search and filter functionality to problems list`
 
-**Day 18 — Problem Detail Page**
+**Day 18 — Problem Detail Page**[done]
 - Build single problem page: description, examples, constraints, hints
 - Commit: `Build problem detail page`
 
-**Day 19 — Submission Entity & API**
+**Day 19 — Submission Entity & API**[done]
 - Create `Submission` entity (user_id, problem_id, language, code, status, created_at)
 - Build `/api/submissions` POST endpoint (store only — no code execution yet)
 - Commit: `Add Submission entity and submit API`
 
-**Day 20 — Connect Submit Flow**
+**Day 20 — Connect Submit Flow**[done]
 - Add code editor textarea + language selector to problem page
 - Wire "Submit Solution" button to submission API
 - Commit: `Connect submit solution UI to backend`
 
-**Day 21 — Buffer / Testing**
+**Day 21 — Buffer / Testing**[done]
 - Test problem CRUD, search, filter, and submission flow
 - Merge `feature/problem-page` into `develop` via PR
 - Tag milestone: `v0.2`
