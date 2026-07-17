@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Problems from './pages/Problems'; // <-- 1. Add this import
 import ProtectedRoute from './components/ProtectedRoute';
+import Leaderboard from './pages/Leaderboard';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/problems" element={<Problems />} /> {/* <-- 2. Add this route */}
             <Route path="/problems/:id" element={<ProblemDetail />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
             
             {/* Protected Routes */}
             <Route 
