@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProblemDetail from './pages/ProblemDetail';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -22,6 +23,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/problems" element={<Problems />} /> {/* <-- 2. Add this route */}
+            <Route path="/problems/:id" element={<ProblemDetail />} />
             
             {/* Protected Routes */}
             <Route 

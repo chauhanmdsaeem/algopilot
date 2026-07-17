@@ -1,134 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
 
-const Problems = () => {
-  const [problems, setProblems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  // Pagination State
-  const [currentPage, setCurrentPage] = useState(1);
-  const problemsPerPage = 10;
-
-  useEffect(() => {
-    const fetchProblems = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/problems');
-        setProblems(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch problems. Is the backend running?');
-        setLoading(false);
-      }
-    };
-
-    fetchProblems();
-  }, []);
-
-  // Pagination Logic
-  const indexOfLastProblem = currentPage * problemsPerPage;
-  const indexOfFirstProblem = indexOfLastProblem - problemsPerPage;
-  const currentProblems = problems.slice(indexOfFirstProblem, indexOfLastProblem);
-  const totalPages = Math.ceil(problems.length / problemsPerPage);
-
-  const getDifficultyStyles = (difficulty) => {
-    switch (difficulty?.toLowerCase()) {
-      case 'easy': return 'bg-emerald-900/30 text-emerald-400 border-emerald-800/50';
-      case 'medium': return 'bg-amber-900/30 text-amber-400 border-amber-800/50';
-      case 'hard': return 'bg-rose-900/30 text-rose-400 border-rose-800/50';
-      default: return 'bg-slate-900/30 text-slate-400 border-slate-800/50';
-    }
-  };
-
+const Profile = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-slate-100">Coding Problems</h1>
-      </div>
-
-      {error && (
-        <div className="bg-rose-900/20 border border-rose-900/50 text-rose-400 px-4 py-3 rounded-lg mb-6 text-sm">
-          {error}
-        </div>
-      )}
-
-      <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
-        <table className="w-full text-left text-sm text-slate-400">
-          <thead className="bg-slate-800/50 text-slate-300 uppercase font-semibold">
-            <tr>
-              <th className="px-6 py-4">Status</th>
-              <th className="px-6 py-4">Title</th>
-              <th className="px-6 py-4">Tags</th>
-              <th className="px-6 py-4">Difficulty</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-800">
-            {loading ? (
-              <tr>
-                <td colSpan="4" className="px-6 py-8 text-center text-slate-500">Loading problems...</td>
-              </tr>
-            ) : currentProblems.length === 0 ? (
-              <tr>
-                <td colSpan="4" className="px-6 py-8 text-center text-slate-500">No problems found in the database.</td>
-              </tr>
-            ) : (
-              currentProblems.map((problem) => (
-                <tr key={problem.id} className="hover:bg-slate-800/25 transition-colors group">
-                  <td className="px-6 py-4 text-slate-600">⚪</td>
-                  <td className="px-6 py-4 font-medium text-slate-200 group-hover:text-indigo-400 transition-colors">
-                    {/* We will build this Problem Detail page on Day 18 */}
-                    <Link to={`/problems/${problem.id}`}>
-                      {problem.id}. {problem.title}
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex flex-wrap gap-2">
-                      {problem.tags && problem.tags.split(',').map((tag, i) => (
-                        <span key={i} className="px-2 py-1 rounded bg-slate-800 text-xs text-slate-400">
-                          {tag.trim()}
-                        </span>
-                      ))}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${getDifficultyStyles(problem.difficulty)}`}>
-                      {problem.difficulty}
-                    </span>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Pagination Controls */}
-      {!loading && problems.length > 0 && (
-        <div className="flex justify-between items-center mt-6">
-          <p className="text-sm text-slate-500">
-            Showing <span className="font-medium text-slate-300">{indexOfFirstProblem + 1}</span> to <span className="font-medium text-slate-300">{Math.min(indexOfLastProblem, problems.length)}</span> of <span className="font-medium text-slate-300">{problems.length}</span> results
-          </p>
-          <div className="flex gap-2">
-            <button 
-              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className="px-4 py-2 border border-slate-700 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
-            >
-              Previous
-            </button>
-            <button 
-              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 border border-slate-700 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
-            >
-              Next
-            </button>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 shadow-2xl">
+        
+        {/* Avatar & Basic Info */}
+        <div className="flex items-center space-x-6">
+          <div className="h-24 w-24 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 border-4 border-slate-800 shadow-lg"></div>
+          <div>
+            <h1 className="text-3xl font-bold text-slate-100">Algo Hacker</h1>
+            <p className="text-slate-400">Full Stack Developer | Java & React Enthusiast</p>
           </div>
         </div>
-      )}
+        
+        {/* Bio Section */}
+        <div className="mt-8 border-t border-slate-800 pt-8">
+          <h2 className="text-xl font-semibold text-slate-200 mb-4">Bio</h2>
+          <p className="text-slate-400 leading-relaxed">
+            Passionate software engineer building interactive platforms. Currently on a 30-day journey to master algorithms and system design.
+          </p>
+        </div>
+        
+        {/* Skills Section */}
+        <div className="mt-8 border-t border-slate-800 pt-8">
+          <h2 className="text-xl font-semibold text-slate-200 mb-4">Skills</h2>
+          <div className="flex flex-wrap gap-3">
+            {['Java', 'Spring Boot', 'React', 'Tailwind CSS', 'MySQL', 'JWT Auth'].map((skill, index) => (
+              <span key={index} className="px-4 py-2 rounded-full bg-indigo-900/30 text-indigo-300 border border-indigo-800/50 text-sm font-medium">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 };
 
-export default Problems;
+export default Profile;
