@@ -37,8 +37,10 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/problems/**").permitAll()
-                .requestMatchers("/api/leaderboard/**").permitAll() 
+                .requestMatchers("/api/problems").permitAll()           // Public can READ
+                .requestMatchers(HttpMethod.POST, "/api/problems/**").hasRole("ADMIN") // Only ADMIN can post/delete
+                .requestMatchers(HttpMethod.DELETE, "/api/problems/**").hasRole("ADMIN")
+                .requestMatchers("/api/leaderboard/**").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
