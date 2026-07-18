@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Admin from './pages/Admin';
 import ProblemDetail from './pages/ProblemDetail';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -43,6 +44,14 @@ function App() {
                   <Profile />
                 </ProtectedRoute>
               } 
+            />
+            <Route 
+              path="/admin" 
+              element={
+                <ProtectedRoute>
+                  <Admin />
+                </ProtectedRoute>
+             } 
             />
           </Routes>
         </main>
