@@ -25,7 +25,7 @@ const Signup = () => {
 
     try {
       // Send data to Spring Boot API
-      await axios.post('http://localhost:8080/api/auth/signup', {
+      await axios.post('${import.meta.env.VITE_API_URL}/api/auth/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password

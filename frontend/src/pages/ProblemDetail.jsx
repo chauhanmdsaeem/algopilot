@@ -31,7 +31,7 @@ const ProblemDetail = () => {
 
     setSubmitStatus('Submitting...');
     try {
-      await axios.post('http://localhost:8080/api/submissions', 
+      await axios.post('${import.meta.env.VITE_API_URL}/api/submissions', 
         { problemId: id, language, code },
         { headers: { Authorization: `Bearer ${token}` } }
       );
