@@ -143,48 +143,48 @@ Workflow tip: keep an integrated terminal split open for `git status`, `git add`
 
 ## Week 4 — Dashboard, Leaderboard, Admin, Deployment
 
-**Day 22 — Dashboard Stats API**
+**Day 22 — Dashboard Stats API**[done]
 - Build endpoint aggregating: problems solved (easy/medium/hard), streak, points
 - Branch: `feature/dashboard`
 - Commit: `Add dashboard statistics API`
 
-**Day 23 — Dashboard UI**
+**Day 23 — Dashboard UI**[done]
 - Build dashboard page with stats cards and recent activity list
 - Commit: `Build dashboard UI with stats and activity`
 
-**Day 24 — Leaderboard**
+**Day 24 — Leaderboard**[done]
 - Create `Leaderboard` entity/view, ranking logic (by points)
 - Build leaderboard API + UI table (rank, username, solved, points)
 - Branch: `feature/leaderboard`
 - Commit: `Implement leaderboard API and UI`
 
-**Day 25 — Admin Panel (Backend)**
+**Day 25 — Admin Panel (Backend)**[done]
 - Add role-based guard for admin-only endpoints
 - Build admin APIs: add/edit/delete problems, manage users
 - Branch: `feature/admin`
 - Commit: `Add admin-only APIs for problem and user management`
 
-**Day 26 — Admin Panel (Frontend)**
+**Day 26 — Admin Panel (Frontend)**[done]
 - Build admin dashboard UI (problem form, user list, delete actions)
 - Commit: `Build admin panel UI`
 
-**Day 27 — Polish & Bug Fixes**
+**Day 27 — Polish & Bug Fixes**[done]
 - Fix responsive/UI issues across all pages
 - Add loading states, empty states, error handling
 - Merge `feature/dashboard`, `feature/leaderboard`, `feature/admin` into `develop`
 
-**Day 28 — Documentation**
+**Day 28 — Documentation**[done]
 - Write proper `README.md` (setup instructions, screenshots, tech stack)
 - Add basic API docs (`docs/api.md`)
 - Commit: `Add project documentation and API reference`
 
-**Day 29 — Deployment**
+**Day 29 — Deployment**[done]
 - Deploy frontend to GitHub Pages
 - Deploy backend to Render/Railway; configure environment variables
 - Point frontend API calls to deployed backend URL
 - Commit: `Configure deployment settings for frontend and backend`
 
-**Day 30 — Final Release**
+**Day 30 — Final Release**[done]
 - Full end-to-end test on the live deployed site
 - Merge `develop` → `main` via `release/v1.0` branch
 - Tag release: `v1.0`

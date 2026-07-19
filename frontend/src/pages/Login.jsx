@@ -21,7 +21,7 @@ const Login = () => {
 
     try {
       // Call the Spring Boot login API
-      const response = await axios.post('${import.meta.env.VITE_API_URL}/api/auth/login', formData);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, formData);
       
       // Save the JWT to the browser's local storage
       const token = response.data.token;
