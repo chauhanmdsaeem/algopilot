@@ -16,7 +16,7 @@ import Leaderboard from './pages/Leaderboard';
 function App() {
   return (
     
-    <Router basename="/algopilot/">
+    <Router>
       <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500/30">
         <Navbar />
         <main className="flex-grow w-full">
