@@ -35,7 +35,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/problems/**").permitAll()
+                .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/problems/**").permitAll()
                 .requestMatchers("/api/leaderboard").permitAll()
                 .anyRequest().authenticated()
             )
