@@ -13,10 +13,11 @@ const ProblemDetail = () => {
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/problems/${id}`);
+        // FIXED: Changed to GET request and pointed to the problems endpoint
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/problems/${id}`);
         setProblem(response.data);
       } catch (err) {
-        console.error("Failed to load problem");
+        console.error("Failed to load problem", err);
       }
     };
     fetchProblem();
@@ -24,6 +25,8 @@ const ProblemDetail = () => {
 
   const handleSubmit = async () => {
     const token = localStorage.getItem('token');
+    
+    // If there is no token, redirect to login
     if (!token) {
       navigate('/login');
       return;
@@ -31,13 +34,14 @@ const ProblemDetail = () => {
 
     setSubmitStatus('Submitting...');
     try {
-      await axios.post('${import.meta.env.VITE_API_URL}/api/submissions', 
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/submissions`, 
         { problemId: id, language, code },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setSubmitStatus('Submitted successfully! (Execution engine coming soon)');
     } catch (err) {
-      setSubmitStatus('Failed to submit code.');
+      console.error(err);
+      setSubmitStatus('Failed to submit code. Check console for details.');
     }
   };
 

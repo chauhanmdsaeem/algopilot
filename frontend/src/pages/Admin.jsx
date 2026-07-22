@@ -8,7 +8,7 @@ const Admin = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      await axios.post('${import.meta.env.VITE_API_URL}/api/problems', problem, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/problems`, problem, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert('Problem added successfully!');
